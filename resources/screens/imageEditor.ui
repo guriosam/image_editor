@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>818</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QWidget" name="verticalWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>1024</width>
+      <height>768</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetNoConstraint</enum>
+     </property>
+     <item>
+      <widget class="QLabel" name="labelImage">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="listWidgetActionQueue">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="currentRow">
+        <number>-1</number>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1024</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Arquivo</string>
+    </property>
+    <addaction name="actionOpenImage"/>
+    <addaction name="actionSaveImage"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuFilters">
+    <property name="title">
+     <string>Filtros</string>
+    </property>
+    <addaction name="actionThresholdBinary"/>
+    <addaction name="actionThresholdBinaryInverse"/>
+    <addaction name="actionThresholdTruncate"/>
+    <addaction name="actionThresholdZero"/>
+    <addaction name="actionThresholdZeroInverse"/>
+    <addaction name="actionThresholdAdaptativeGaussian"/>
+    <addaction name="actionThresholdAdaptativeMean"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuFilters"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpenImage">
+   <property name="text">
+    <string>Abrir Imagem</string>
+   </property>
+  </action>
+  <action name="actionSaveImage">
+   <property name="text">
+    <string>Salvar</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Fechar</string>
+   </property>
+  </action>
+  <action name="actionThresholdBinary">
+   <property name="text">
+    <string>Threshold Binário</string>
+   </property>
+  </action>
+  <action name="actionThresholdBinaryInverse">
+   <property name="text">
+    <string>Threshold Binário Invertido</string>
+   </property>
+  </action>
+  <action name="actionThresholdTruncate">
+   <property name="text">
+    <string>Threshold Truncado</string>
+   </property>
+  </action>
+  <action name="actionThresholdZero">
+   <property name="text">
+    <string>Threshold Zero</string>
+   </property>
+  </action>
+  <action name="actionThresholdZeroInverse">
+   <property name="text">
+    <string>Threshold Zero Invertido</string>
+   </property>
+  </action>
+  <action name="actionThresholdAdaptativeGaussian">
+   <property name="text">
+    <string>Threshold Adaptativo Gaussiano</string>
+   </property>
+  </action>
+  <action name="actionThresholdAdaptativeMean">
+   <property name="text">
+    <string>Threshold Adaptativo Médio</string>
+   </property>
+  </action>
+  <action name="actiona">
+   <property name="text">
+    <string>a</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../../main/resources/mainResource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
