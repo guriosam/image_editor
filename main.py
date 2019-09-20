@@ -28,17 +28,15 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
         self.setupUi(self)
         fd.FileDialog.__init__(self)
         self.states = []
+        self.appliedFilters = []
         self.cvImg= ''
         self.cvImg2 = ''
         self.add_menu_triggers()
 
     def open_file_settings(self):
         fname = fd.FileDialog.openFile(self, '', True, "", False)
-        #print(fname)
-        #fname = 'C:/Users/Caio/handExample.jpg'
         self.labelImage.setPixmap(QPixmap(fname))
-        self.cvImg = cv2.imread(fname)
-        self.cvImg2 = cv2.imread(fname, 0)
+        self.cvImg = cv2.imread(fname, 0)
 
     def add_menu_triggers(self):
         self.actionOpenImage.triggered.connect(self.open_file_settings)
@@ -52,72 +50,59 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
 
     def threshold(self, type):
 
-        #self.states.append(self.image)
+        if isinstance(self.cvImg, str):
+            return
+
+        self.listWidgetActionQueue.addItem(type)
 
         if type == 'bin':
-            print(type)
             ret, thresh1 = cv2.threshold(self.cvImg, 127, 255, cv2.THRESH_BINARY)
-            #plt.imshow(thresh1)
-            #plt.show()
             self.temp = thresh1
         elif type == 'bin_inv':
-            print(type)
             ret, thresh2 = cv2.threshold(self.cvImg, 127, 255, cv2.THRESH_BINARY_INV)
             self.temp = thresh2
         elif type == 'trunc':
-            print(type)
             ret, thresh3 = cv2.threshold(self.cvImg, 127, 255, cv2.THRESH_TRUNC)
             self.temp = thresh3
         elif type == 'zero':
-            print(type)
             ret, thresh4 = cv2.threshold(self.cvImg, 127, 255, cv2.THRESH_TOZERO)
             self.temp = thresh4
         elif type == 'zero_inv':
-            print(type)
             ret, thresh5 = cv2.threshold(self.cvImg, 127, 255, cv2.THRESH_TOZERO_INV)
             self.temp = thresh5
         elif type == 'gau':
-            print(type)
-            img = cv2.medianBlur(self.cvImg2, 5)
-            ret, th1 = cv2.threshold(self.cvImg2, 127, 255, cv2.THRESH_BINARY)
-            th2 = cv2.adaptiveThreshold(self.cvImg2, 255, cv2.ADAPTIVE_THRESH_MEAN_C, \
+            img = cv2.medianBlur(self.cvImg, 5)
+            ret, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+            th2 = cv2.adaptiveThreshold(th1, 255, cv2.ADAPTIVE_THRESH_MEAN_C, \
                                         cv2.THRESH_BINARY, 11, 2)
-            self.displayImageGray(th2)
-            return
+            self.temp = th2
         elif type == 'med':
-            print(type)
-            img = cv2.medianBlur(self.cvImg2, 5)
+            img = cv2.medianBlur(self.cvImg, 5)
             ret, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
             th3 = cv2.adaptiveThreshold(th1, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, \
                                         cv2.THRESH_BINARY, 11, 2)
+            self.temp = th3
 
-            self.displayImageGray(th3)
-            return
+        if len(self.temp.shape) < 3 or self.temp.shape[2] == 1:
+            self.display_image_gray()
+        elif len(self.temp.shape) == 3:
+            self.displayImage()
 
-
-            #height, width , shape = self.cvImg.shape
-        #print(self.cvImg.shape)
-        #print(height, width)
-        #bytesPerLine = 3 * width
-        #print(bytesPerLine)
-        #qImg = QImage(self.cvImg.data, width, height, bytesPerLine + 1, QImage.Format_RGB888)
-
-        #self.image.setPixmap(qImg)
-
-        self.displayImage()
-
-    def displayImageGray(self, th):
-        if len(th.shape) < 3 or th.shape[2] == 1:
-            image = cv2.cvtColor(th, cv2.COLOR_GRAY2RGB)
+    def display_image_gray(self, ):
+        if len(self.temp.shape) < 3 or self.temp.shape[2] == 1:
+            image = cv2.cvtColor(self.temp, cv2.COLOR_GRAY2RGB)
         else:
-            image = cv2.cvtColor(th, cv2.COLOR_BGR2RGB)
+            image = cv2.cvtColor(self.temp, cv2.COLOR_BGR2RGB)
 
         height, width, byteValue = image.shape
         byteValue = byteValue * width
 
         qimage = QImage(image, width, height, byteValue, QImage.Format_RGB888)
 
+
         self.labelImage.setPixmap(QPixmap.fromImage(qimage))
+        #self.labelImage.pixmap().scaled(width, height, QtCore.Qt.KeepAspectRatio)
+
 
         #self.states.append(self.labelImage)
 

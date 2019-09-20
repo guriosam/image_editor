@@ -1,5 +1,1 @@
-<RCC>
-  <qresource prefix="Imgs">
-    <file alias="wallBlue">imgs/wallBlue.png</file>
-  </qresource>
-</RCC>
+<RCC/>
