@@ -42,12 +42,15 @@ class FileDialog:
         else:
             dialog.setDirectory(str(""))
 
-
         if dialog.exec_() == QDialog.Accepted:
             path = dialog.selectedFiles()[0]  # returns a list
             return path
         else:
             return ''
+
+    def saveFile(self, directory='', forOpen=False,):
+        filename = QFileDialog.getSaveFileName(self, "Save file", '', '.jpg')
+        return filename
 
     def get_current_path(self):
         dirpath = os.getcwd()

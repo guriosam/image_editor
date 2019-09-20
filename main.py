@@ -15,7 +15,7 @@ from cv2 import *
 from functools import *
 import numpy as np
 from matplotlib import pyplot as plt
-import src.openFileDialog as fd
+import src.fileDialog as fd
 
 from src.imageEditor import Ui_MainWindow
 import src.imageEditor as ie
@@ -38,8 +38,14 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
         self.labelImage.setPixmap(QPixmap(fname))
         self.cvImg = cv2.imread(fname, 0)
 
+    def save_file_settings(self):
+        filepath, format = fd.FileDialog.saveFile(self, '', True)
+        print(filepath + format)
+        self.labelImage.pixmap().toImage().save(filepath + format)
+
     def add_menu_triggers(self):
         self.actionOpenImage.triggered.connect(self.open_file_settings)
+        self.actionSaveImage.triggered.connect(self.save_file_settings)
         self.actionThresholdBinary.triggered.connect(partial(self.threshold, 'bin'))
         self.actionThresholdBinaryInverse.triggered.connect(partial(self.threshold, 'bin_inv'))
         self.actionThresholdTruncate.triggered.connect(partial(self.threshold, 'trunc'))
