@@ -31,21 +31,21 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
         self.appliedFilters = []
         self.cvImg= ''
         self.cvImg2 = ''
-        self.add_menu_triggers()
+        self.addMenuTriggers()
 
-    def open_file_settings(self):
+    def openFileSettings(self):
         fname = fd.FileDialog.openFile(self, '', True, "", False)
         self.labelImage.setPixmap(QPixmap(fname))
         self.cvImg = cv2.imread(fname, 0)
 
-    def save_file_settings(self):
+    def saveFileSettings(self):
         filepath, format = fd.FileDialog.saveFile(self, '', True)
         print(filepath + format)
         self.labelImage.pixmap().toImage().save(filepath + format)
 
-    def add_menu_triggers(self):
-        self.actionOpenImage.triggered.connect(self.open_file_settings)
-        self.actionSaveImage.triggered.connect(self.save_file_settings)
+    def addMenuTriggers(self):
+        self.actionOpenImage.triggered.connect(self.openFileSettings)
+        self.actionSaveImage.triggered.connect(self.saveFileSettings)
         self.actionThresholdBinary.triggered.connect(partial(self.threshold, 'bin'))
         self.actionThresholdBinaryInverse.triggered.connect(partial(self.threshold, 'bin_inv'))
         self.actionThresholdTruncate.triggered.connect(partial(self.threshold, 'trunc'))
@@ -90,11 +90,11 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
             self.temp = th3
 
         if len(self.temp.shape) < 3 or self.temp.shape[2] == 1:
-            self.display_image_gray()
+            self.displayImageGray()
         elif len(self.temp.shape) == 3:
             self.displayImage()
 
-    def display_image_gray(self, ):
+    def displayImageGray(self, ):
         if len(self.temp.shape) < 3 or self.temp.shape[2] == 1:
             image = cv2.cvtColor(self.temp, cv2.COLOR_GRAY2RGB)
         else:
@@ -105,12 +105,10 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
 
         qimage = QImage(image, width, height, byteValue, QImage.Format_RGB888)
 
-
         self.labelImage.setPixmap(QPixmap.fromImage(qimage))
-        #self.labelImage.pixmap().scaled(width, height, QtCore.Qt.KeepAspectRatio)
+        # self.labelImage.pixmap().scaled(width, height, QtCore.Qt.KeepAspectRatio)
 
-
-        #self.states.append(self.labelImage)
+        # self.states.append(self.labelImage)
 
         return
 
@@ -133,6 +131,7 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
             self.states.append(self.labelImage)
         else:
             print(self.temp.shape)
+
 
 if __name__ == "__main__":
     import sys

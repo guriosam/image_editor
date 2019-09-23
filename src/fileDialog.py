@@ -18,7 +18,7 @@ class FileDialog:
         dialog.setOptions(options)
 
         if directory == '':
-            directory = self.get_current_path()
+            directory = self.getCurrentPath()
             print(directory)
 
         dialog.setFilter(dialog.filter() | QtCore.QDir.Hidden)
@@ -52,6 +52,6 @@ class FileDialog:
         filename = QFileDialog.getSaveFileName(self, "Save file", '', '.jpg')
         return filename
 
-    def get_current_path(self):
+    def getCurrentPath(self):
         dirpath = os.getcwd()
         return dirpath
