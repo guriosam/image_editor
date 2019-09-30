@@ -39,7 +39,7 @@
     <item>
      <widget class="QWidget" name="verticalWidget" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -57,10 +57,13 @@
        <item>
         <widget class="QLabel" name="labelImage">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="mouseTracking">
+          <bool>false</bool>
          </property>
          <property name="autoFillBackground">
           <bool>false</bool>
@@ -68,8 +71,14 @@
          <property name="text">
           <string/>
          </property>
+         <property name="pixmap">
+          <pixmap>../imgs/handExample.jpg</pixmap>
+         </property>
          <property name="scaledContents">
-          <bool>true</bool>
+          <bool>false</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
          <property name="wordWrap">
           <bool>false</bool>
@@ -149,6 +158,8 @@
     <addaction name="actionThresholdZeroInverse"/>
     <addaction name="actionThresholdAdaptativeGaussian"/>
     <addaction name="actionThresholdAdaptativeMean"/>
+    <addaction name="separator"/>
+    <addaction name="actionFeatureTracking"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuFilters"/>
@@ -207,6 +218,11 @@
   <action name="actiona">
    <property name="text">
     <string>a</string>
+   </property>
+  </action>
+  <action name="actionFeatureTracking">
+   <property name="text">
+    <string>Feature Tracking</string>
    </property>
   </action>
  </widget>

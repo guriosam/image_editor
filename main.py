@@ -10,6 +10,7 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QPixmap, QImage
+from PyQt5.QtCore import Qt
 import cv2
 from cv2 import *
 from functools import *
@@ -29,19 +30,37 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
         fd.FileDialog.__init__(self)
         self.states = []
         self.appliedFilters = []
-        self.cvImg= ''
+        self.cvImg = ''
         self.cvImg2 = ''
         self.addMenuTriggers()
+        self.fname = ''
+
+    def resizeEvent(self, event):
+        if self.cvImg is '':
+            pass
+
+        size = self.labelImage.size()
+        pixmap = QPixmap(self.fname)
+        pixmap = pixmap.scaled(size, Qt.KeepAspectRatio)
+        self.labelImage.setPixmap(pixmap)
 
     def openFileSettings(self):
-        fname = fd.FileDialog.openFile(self, '', True, "", False)
-        self.labelImage.setPixmap(QPixmap(fname))
-        self.cvImg = cv2.imread(fname, 0)
+        self.fname = fd.FileDialog.openFile(self, '', True, "", False)
+        pixmap = QPixmap(self.fname)
+
+        pixmap = pixmap.scaled(self.labelImage.size(), Qt.KeepAspectRatio)
+        self.labelImage.setPixmap(pixmap)
+
+        self.cvImg = cv2.imread(self.fname, 0)
+        self.cvImg2 = cv2.imread(self.fname)
 
     def saveFileSettings(self):
-        filepath, format = fd.FileDialog.saveFile(self, '', True)
-        print(filepath + format)
-        self.labelImage.pixmap().toImage().save(filepath + format)
+        filepath = fd.FileDialog.saveFile(self, '', True)
+
+        if filepath[0] is '':
+            return
+
+        self.labelImage.pixmap().toImage().save(filepath[0] + '.jpg')
 
     def addMenuTriggers(self):
         self.actionOpenImage.triggered.connect(self.openFileSettings)
@@ -53,6 +72,29 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
         self.actionThresholdZeroInverse.triggered.connect(partial(self.threshold, 'zero_inv'))
         self.actionThresholdAdaptativeGaussian.triggered.connect(partial(self.threshold, 'gau'))
         self.actionThresholdAdaptativeMean.triggered.connect(partial(self.threshold, 'med'))
+        self.actionFeatureTracking.triggered.connect(self.featureTracking)
+        self.listWidgetActionQueue.itemClicked.connect(self.itemClicked)
+
+    def itemClicked(self, item):
+        print(item.text())
+        index = self.listWidgetActionQueue.row(item)
+        self.labelImage = self.states[index]
+
+    def featureTracking(self):
+       # gray = cv2.cvtColor(self.cvImg, 0)
+
+        corners = cv2.goodFeaturesToTrack(self.cvImg, 25, 0.01, 10)
+        corners = np.int0(corners)
+
+        self.temp = self.cvImg
+
+        for i in corners:
+            x, y = i.ravel()
+            cv2.circle(self.temp, (x, y), 3, 255, -1)
+
+
+        self.displayImageGray()
+        # self.displayImage()
 
     def threshold(self, type):
 
@@ -124,6 +166,8 @@ class MainWindow(QMainWindow,Ui_MainWindow, fd.FileDialog):
                                self.temp.shape[0],
                                self.temp.strides[0],  # <--- +++
                                qformat)
+
+            #img.scaled(self.labelImage.size(),Qt.KeepAspectRatio)
             #img = img.rgbSwapped()
             self.labelImage.setPixmap(QPixmap.fromImage(img))
             self.labelImage.setAlignment(QtCore.Qt.AlignCenter)

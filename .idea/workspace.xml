@@ -4,12 +4,8 @@
     <list default="true" id="0b79635e-aa43-41bf-9947-3dbcf3593524" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/task.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/task2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/task21.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fileDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/fileDialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/task2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/screens/imageEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/resources/screens/imageEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/imageEditor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/imageEditor.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +142,7 @@
       <workItem from="1568052649521" duration="15588000" />
       <workItem from="1568321392955" duration="27228000" />
       <workItem from="1568840044988" duration="67000" />
-      <workItem from="1568840221598" duration="14906000" />
+      <workItem from="1568840221598" duration="37125000" />
     </task>
     <servers />
   </component>
@@ -165,7 +161,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/image_editor$main.coverage" NAME="main Coverage Results" MODIFIED="1569261134134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/image_editor$main.coverage" NAME="main Coverage Results" MODIFIED="1569871579047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/task_screen$task2.coverage" NAME="task2 Coverage Results" MODIFIED="1568743580247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
     <SUITE FILE_PATH="coverage/task_screen$task.coverage" NAME="task Coverage Results" MODIFIED="1568322376687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
     <SUITE FILE_PATH="coverage/task_screen$main.coverage" NAME="main Coverage Results" MODIFIED="1568839789490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
