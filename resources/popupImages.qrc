@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="C:\Users\Caio\PycharmProjects\image_editor\resources\imgs\wolf1.png">
+    <file>imgs/wolf1.png</file>
+  </qresource>
+  <qresource prefix="C:\Users\Caio\PycharmProjects\image_editor\resources\imgs\wolf2.png">
+    <file>imgs/wolf2.png</file>
+  </qresource>
+</RCC>
